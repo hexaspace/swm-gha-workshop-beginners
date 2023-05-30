@@ -10,6 +10,7 @@ jobs:
     stratege:
       matrix:
         os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        nodejs: [ '16', '18' ]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -19,3 +20,4 @@ jobs:
       
       run: |
         echo "OS: ${{ matrix.os }}"
+        echo "nodejs version: ${{ matrix.nodejs }}"

@@ -13,20 +13,17 @@ jobs:
       JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
     steps:
     - name : say hello word 1
+      id: helloworld1
       shell:  bash
       
-      env:
-        STEP_LEVEL_1: 'STEP LEVEL VALUE 1'
       run: |
         echo 'hello world from  step1'
         randomValue = "swm$(echo $RANDOM)"
-        echo "STEP_VALUE=$randomValue" >> $GITHUB_ENV
+        echo "STEP_VALUE=$randomValue" >> $GITHUB_OUTPUT
 
     - name : say hello word 2
       shell:  pwsh
-      env:
-        STEP_LEVEL_2: 'STEP LEVEL VALUE 2'
       run: |
         echo 'hello world from  step2'
-        echo "STEP_VALUE: ${{ env.STEP_VALUE }}"
+        echo "STEP_VALUE: ${{ steps.helloworld1.outputs.STEP_VALUE }}"
   

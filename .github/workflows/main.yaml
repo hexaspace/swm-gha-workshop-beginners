@@ -1,15 +1,6 @@
 name: 'Swm github actions basic'
 
-on: push:
-      branches:
-        - main
-        - 'feature/*'
-      paths:
-        - 'src/*'
-        = test/*
-    pull_request:
-      baranches:
-        - main
+on: push
 
 jobs:
   first-job:

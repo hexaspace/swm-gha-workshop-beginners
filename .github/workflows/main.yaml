@@ -14,3 +14,30 @@ jobs:
       shell:  bash
       run: |
         echo "hello world"
+  deploy-dev:
+    name: 'deploy-dev'
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name : say hello word 1
+      shell:  bash
+      run: |
+        echo "hello world"
+  deploy-staging:
+    name: 'deploy staging'
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name : say hello word 1
+      shell:  bash
+      run: |
+        echo "hello world"
+  deploy-prod:
+    name: 'deploy-prod'
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name : say hello word 1
+      shell:  bash
+      run: |
+        echo "hello world"

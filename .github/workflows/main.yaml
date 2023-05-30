@@ -19,37 +19,14 @@ jobs:
         STEP_LEVEL_1: 'STEP LEVEL VALUE 1'
       run: |
         echo 'hello world from  step1'
-        echo "Global: $GLOBAL_LEVEL"
-        echo "job 1: ${{env.JOB_LEVEL_1}}"
-        echo "STEP 1: ${{env.STEP_LEVEL_1}}"
-        echo "STEP 2: ${{env.STEP_LEVEL_2}}"
+        randomValue = "swm$(echo $RANDOM)"
+        echo "STEP_VALUE=$randomValue" >> $GITHUB_ENV
+
     - name : say hello word 2
       shell:  pwsh
       env:
         STEP_LEVEL_2: 'STEP LEVEL VALUE 2'
       run: |
         echo 'hello world from  step2'
-  second-job:
-    name: 'second job'
-
-    runs-on: ubuntu-latest
-    env:
-      JOB_LEVEL_2: 'JOB LEVEL VALUE 2'
-    steps:
-    - name : say hello word 3
-      shell:  bash
-      env:
-        STEP_LEVEL_3: 'STEP LEVEL VALUE 3'
-      run: |
-        echo 'hello world from  step3'
-        echo "Global: $GLOBAL_LEVEL"
-        echo "job 1: ${{env.JOB_LEVEL_1}}"
-        echo "STEP 1: ${{env.STEP_LEVEL_1}}"
-        echo "STEP 2: ${{env.STEP_LEVEL_2}}"
-    - name : say hello word 4
-      shell:  pwsh
-      env:
-        STEP_LEVEL_4: 'STEP LEVEL VALUE 4'
-      run: |
-        echo 'hello world from  step4'
-
+        echo "STEP_VALUE: ${{ env.STEP_VALUE }}"
+  

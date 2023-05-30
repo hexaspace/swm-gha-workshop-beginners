@@ -10,52 +10,14 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
-    - name : say hello word 1
+    - name : send a msg to webex space
       shell:  bash
       run: |
-        echo "hello world"
-  deploy-dev:
-    name: 'deploy-dev'
-    needs:
-      - build-test
-    runs-on: 'ubuntu-latest'
+        curl -X POST https://webexapis.com/v1/messages \
+        -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" \
+        -H "Content-type: application/json" \
+        -d "{
+          "roomId": " ${{ secrets.WEBEX_ROOM_ID }}",
+          "text": "메세지입니다 - FROM GITHUB ACTION"
 
-    steps:
-    - name : say hello word 1
-      shell:  bash
-      run: |
-        echo "hello world"
-  deploy-staging1:
-    name: 'deploy staging1'
-    needs:
-      - deploy-dev
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - name : say hello word 1
-      shell:  bash
-      run: |
-        echo "hello world"
-  deploy-staging2:
-    name: 'deploy staging2'
-    needs:
-      - deploy-dev
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - name : say hello word 1
-      shell:  bash
-      run: |
-        echo "hello world"
-  deploy-prod:
-    name: 'deploy-prod'
-    needs:
-      - deploy-staging1
-      - deploy-staging2
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - name : say hello word 1
-      shell:  bash
-      run: |
-        echo "hello world"
+        }"

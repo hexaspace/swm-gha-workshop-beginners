@@ -27,4 +27,5 @@ jobs:
       run: |
         echo 'hello world from  step2'
         echo "STEP_VALUE: ${{ steps.helloworld1.outputs.STEP_VALUE }}"
+        echo "API_KEY: ${{ secretes.API_KEY }}"
   

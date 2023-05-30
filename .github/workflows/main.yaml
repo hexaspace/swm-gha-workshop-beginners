@@ -18,7 +18,8 @@ jobs:
       
       run: |
         echo 'hello world from  step1'
-        randomValue = "swm$(echo $RANDOM)"
+        randomValue="swm$(echo $RANDOM)"
+        echo "::add-mask::$randomValue"
         echo "STEP_VALUE=$randomValue" >> $GITHUB_OUTPUT
 
     - name : say hello word 2

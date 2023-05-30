@@ -5,29 +5,12 @@ on: push
 env:
   GLOBAL_LEVEL: 'GLOBAL_LEVEL'
 jobs:
-  first-job:
-    name: 'First job'
-    strategy:
-      matrix:
-        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-        nodejs: [ '16', '18' ]
-    runs-on: ${{ matrix.os }}
+  build-test:
+    name: 'build and test'
+    runs-on: 'ubuntu-latest'
 
     steps:
-    - name : say hello word 1 - ${{ matrix.os }}
-  
+    - name : say hello word 1
       shell:  bash
-      
       run: |
-        echo "OS: ${{ matrix.os }}"
-        echo "nodejs version: ${{ matrix.nodejs }}"
-
-
-    - name : say hello word 2 - ${{ matrix.os }}
-      if: matrix.os == 'windows-latest'
-  
-      shell:  bash
-      
-      run: |
-        echo "OS: ${{ matrix.os }}"
-        echo "nodejs version: ${{ matrix.nodejs }}"
+        echo "hello world"

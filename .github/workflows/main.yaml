@@ -7,25 +7,15 @@ env:
 jobs:
   first-job:
     name: 'First job'
+    stratege:
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+    runs-on: ${{ matrix.os }}
 
-    runs-on: ubuntu-latest
-    env:
-      JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
     steps:
-    - name : say hello word 1
-      id: helloworld1
+    - name : say hello word 1 - ${{ matrix.os }}
+  
       shell:  bash
       
       run: |
-        echo 'hello world from  step1'
-        randomValue="swm$(echo $RANDOM)"
-        echo "::add-mask::$randomValue"
-        echo "STEP_VALUE=$randomValue" >> $GITHUB_OUTPUT
-
-    - name : say hello word 2
-      shell:  pwsh
-      run: |
-        echo 'hello world from  step2'
-        echo "STEP_VALUE: ${{ steps.helloworld1.outputs.STEP_VALUE }}"
-        echo "API_KEY: ${{ secretes.API_KEY }}"
-  
+        echo "OS: ${{ matrix.os }}"

@@ -1,0 +1,28 @@
+name: 'Swm github actions basic'
+
+on: push:
+      branches:
+        - main
+        - 'feature/*'
+      paths:
+        - 'src/*'
+        = test/*
+    pull_request:
+      baranches:
+        - main
+
+jobs:
+  first-job:
+    name: 'First job'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name : 'say hello word 1';
+      shell:  bash
+      run: |
+        echo 'hello world from  step2'
+    - name : 'say hello word 3';
+      shell:  pwsh
+      run: |
+        echo 'hello world from  step2'

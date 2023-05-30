@@ -3,19 +3,30 @@ name: 'Swm github actions basic'
 on: push
 
 env:
-  GLOBAL
+  GLOBAL_LEVEL: 'GLOBAL_LEVEL'
 jobs:
   first-job:
     name: 'First job'
 
     runs-on: ubuntu-latest
-
+    env:
+      JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
     steps:
     - name : say hello word 1
       shell:  bash
+      
+      env:
+        STEP_LEVEL_1: 'STEP LEVEL VALUE 1'
       run: |
         echo 'hello world from  step1'
-    - name : say hello word 3
+        echo "Global: $GLOBAL_LEVEL"
+        echo "job 1: ${{env.JOB_LEVEL_1}}"
+        echo "STEP 1: ${{env.STEP_LEVEL_1}}"
+        echo "STEP 2: ${{env.STEP_LEVEL_2}}"
+    - name : say hello word 2
       shell:  pwsh
+      env:
+        STEP_LEVEL_2: 'STEP LEVEL VALUE 2'
       run: |
         echo 'hello world from  step2'
+

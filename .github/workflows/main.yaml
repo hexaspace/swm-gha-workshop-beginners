@@ -22,7 +22,7 @@ jobs:
         echo "OS: ${{ matrix.os }}"
         echo "nodejs version: ${{ matrix.nodejs }}"
 
-    steps:
+
     - name : say hello word 2 - ${{ matrix.os }}
       if: matrix.os == 'windows-latest'
   

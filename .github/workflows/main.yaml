@@ -16,6 +16,8 @@ jobs:
         echo "hello world"
   deploy-dev:
     name: 'deploy-dev'
+    needs:
+      - build-test
     runs-on: 'ubuntu-latest'
 
     steps:
@@ -23,8 +25,21 @@ jobs:
       shell:  bash
       run: |
         echo "hello world"
-  deploy-staging:
-    name: 'deploy staging'
+  deploy-staging1:
+    name: 'deploy staging1'
+    needs:
+      - deploy-dev
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name : say hello word 1
+      shell:  bash
+      run: |
+        echo "hello world"
+  deploy-staging2:
+    name: 'deploy staging2'
+    needs:
+      - deploy-dev
     runs-on: 'ubuntu-latest'
 
     steps:
@@ -34,6 +49,9 @@ jobs:
         echo "hello world"
   deploy-prod:
     name: 'deploy-prod'
+    needs:
+      - deploy-staging1
+      - deploy-staging2
     runs-on: 'ubuntu-latest'
 
     steps:
